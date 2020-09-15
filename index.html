@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8'>
+<title>Presidentes de M&eacute;xico</title>
+<style>
+div#memory_board{
+	background:#CCC;
+	border:#999 1px solid;
+	width:100%;
+	height:100%;
+	padding:0px;
+	margin:0px auto;
+}
+div#memory_board > div{
+	background: url(Tarjetas.png) no-repeat;
+	border:#000 1px solid;
+	width:125px;
+	height:125px;
+	float:left;
+	margin:2.5px;
+	padding:0px;
+	font-size:64px;
+	cursor:pointer;
+	text-align:center;
+}
+
+
+    .footer, .push {
+    clear: both;
+    }
+
+
+</style>
+<script>
+// Scripted By Adam Khoury in connection with the following video tutorial:
+// http://www.youtube.com/watch?v=c_ohDPWmsM0
+var aa='00_Cardenas_Foto.jpg';
+var ab='00_Cardenas.jpg';
+var a='01_AvilaC.jpg';
+var b='01_AvilaC_Foto.jpg';
+var c='02_Aleman.jpg';
+var d='02_Aleman_Foto.jpg';
+var e='03_Ruiz.jpg';
+var f='03_Ruiz_Foto.jpg';
+var g='04_LopezM.jpg';
+var h='04_LopezM_Foto.jpg';
+var i='05_DiazO.jpg';
+var j='05_DiazO_Foto.jpg';
+var k='06_Echeverria.jpg';
+var l='06_Echeverria_Foto.jpg';
+var m='07_LopezP.jpg';
+var n='07_LopezP_Foto.jpg';
+var o='08_DeLaMadrid.jpg';
+var p='08_DeLaMadrid_Foto.jpg';
+var q='09_Salinas.jpg';
+var r='09_Salinas_Foto.jpg';
+var s='10_Zedillo.jpg';
+var t='10_Zedillo_Foto.jpg';
+var u='11_Fox.jpg';
+var v='11_Fox_Foto.jpg';
+var w='12_Calderon.jpg';
+var x='12_Calderon_Foto.jpg';
+var y='13_PenaNieto.jpg';
+var z='13_PenaNieto_Foto.jpg';
+
+//var memory_array = ['A','a','B','B','C','C','D','D','E','E','F','F','G','G','H','H','I','I','J','J','K','K','L','L'];
+var memory_array = [aa, ab, a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z];
+var memory_values = [];
+var memory_tile_ids = [];
+var tiles_flipped = 0;
+Array.prototype.memory_tile_shuffle = function(){
+    var i = this.length, j, temp;
+    while(--i > 0){
+        j = Math.floor(Math.random() * (i+1));
+        temp = this[j];
+        this[j] = this[i];
+        this[i] = temp;
+    }
+}
+function newBoard(){
+	tiles_flipped = 0;
+	var output = '';
+    memory_array.memory_tile_shuffle();
+	for(var i = 0; i < memory_array.length; i++){
+		output += '<div id="tile_'+i+'" onclick="memoryFlipTile(this,\''+memory_array[i]+'\')"></div>';
+	}
+	document.getElementById('memory_board').innerHTML = output;
+}
+
+function finalizado(){
+	var resultado = confirm("¡Has ganado!\nPresiona OK para jugar nuevamente.");
+	if(resultado == true){
+		document.getElementById('memory_board').innerHTML = "";
+		newBoard();
+	}
+}
+
+function memoryFlipTile(tile,val){
+	if(tile.innerHTML == "" && memory_values.length < 2){
+		tile.style.background = '#FFF';
+		tile.innerHTML = '<img src="' + val + '">';
+		//tile.innerHTML = val;
+		if(memory_values.length == 0){
+			memory_values.push(val);
+			//alert(memory_values);
+			memory_tile_ids.push(tile.id);
+		} else if(memory_values.length == 1){
+			memory_values.push(val);
+			memory_tile_ids.push(tile.id);
+			if(((memory_values[0]==a) && (memory_values[1]==b)) || ((memory_values[1]==a) && (memory_values[0]==b))){
+				tiles_flipped += 2;
+				memory_values = [];
+            	memory_tile_ids = [];
+				// Check to see if the whole board is cleared
+				if(tiles_flipped == memory_array.length){
+					setTimeout(finalizado, 5000);
+					/*alert("Board cleared... generating new board");
+					document.getElementById('memory_board').innerHTML = "";
+					newBoard();*/
+				}
+			}else if(((memory_values[0]==c) && (memory_values[1]==d)) || ((memory_values[1]==c) && (memory_values[0]==d))){
+				tiles_flipped += 2;
+				memory_values = [];
+            	memory_tile_ids = [];
+				// Check to see if the whole board is cleared
+				if(tiles_flipped == memory_array.length){
+					setTimeout(finalizado, 5000);
+					/*alert("Board cleared... generating new board");
+					document.getElementById('memory_board').innerHTML = "";
+					newBoard();*/
+				}
+			}else if(((memory_values[0]==e) && (memory_values[1]==f)) || ((memory_values[1]==e) && (memory_values[0]==f))){
+				tiles_flipped += 2;
+				memory_values = [];
+            	memory_tile_ids = [];
+				// Check to see if the whole board is cleared
+				if(tiles_flipped == memory_array.length){
+					setTimeout(finalizado, 5000);
+					/*alert("Board cleared... generating new board");
+					document.getElementById('memory_board').innerHTML = "";
+					newBoard();*/
+				}
+			}else if(((memory_values[0]==g) && (memory_values[1]==h)) || ((memory_values[1]==g) && (memory_values[0]==h))){
+				tiles_flipped += 2;
+				memory_values = [];
+            	memory_tile_ids = [];
+				// Check to see if the whole board is cleared
+				if(tiles_flipped == memory_array.length){
+					setTimeout(finalizado, 5000);
+					/*alert("Board cleared... generating new board");
+					document.getElementById('memory_board').innerHTML = "";
+					newBoard();*/
+				}
+			}else if(((memory_values[0]==i) && (memory_values[1]==j)) || ((memory_values[1]==i) && (memory_values[0]==j))){
+				tiles_flipped += 2;
+				memory_values = [];
+            	memory_tile_ids = [];
+				// Check to see if the whole board is cleared
+				if(tiles_flipped == memory_array.length){
+					setTimeout(finalizado, 5000);
+					/*alert("Board cleared... generating new board");
+					document.getElementById('memory_board').innerHTML = "";
+					newBoard();*/
+				}
+			}else if(((memory_values[0]==k) && (memory_values[1]==l)) || ((memory_values[1]==k) && (memory_values[0]==l))){
+				tiles_flipped += 2;
+				memory_values = [];
+            	memory_tile_ids = [];
+				// Check to see if the whole board is cleared
+				if(tiles_flipped == memory_array.length){
+					setTimeout(finalizado, 5000);
+					/*alert("Board cleared... generating new board");
+					document.getElementById('memory_board').innerHTML = "";
+					newBoard();*/
+				}
+			}else if(((memory_values[0]==m) && (memory_values[1]==n)) || ((memory_values[1]==m) && (memory_values[0]==n))){
+				tiles_flipped += 2;
+				memory_values = [];
+            	memory_tile_ids = [];
+				// Check to see if the whole board is cleared
+				if(tiles_flipped == memory_array.length){
+					setTimeout(finalizado, 5000);
+					/*alert("Board cleared... generating new board");
+					document.getElementById('memory_board').innerHTML = "";
+					newBoard();*/
+				}
+			}else if(((memory_values[0]==o) && (memory_values[1]==p)) || ((memory_values[1]==o) && (memory_values[0]==p))){
+				tiles_flipped += 2;
+				memory_values = [];
+            	memory_tile_ids = [];
+				// Check to see if the whole board is cleared
+				if(tiles_flipped == memory_array.length){
+					setTimeout(finalizado, 5000);
+					/*alert("Board cleared... generating new board");
+					document.getElementById('memory_board').innerHTML = "";
+					newBoard();*/
+				}
+			}else if(((memory_values[0]==q) && (memory_values[1]==r)) || ((memory_values[1]==q) && (memory_values[0]==r))){
+				tiles_flipped += 2;
+				memory_values = [];
+            	memory_tile_ids = [];
+				// Check to see if the whole board is cleared
+				if(tiles_flipped == memory_array.length){
+					setTimeout(finalizado, 5000);
+					/*alert("Board cleared... generating new board");
+					document.getElementById('memory_board').innerHTML = "";
+					newBoard();*/
+				}
+			}else if(((memory_values[0]==s) && (memory_values[1]==t)) || ((memory_values[1]==s) && (memory_values[0]==t))){
+				tiles_flipped += 2;
+				memory_values = [];
+            	memory_tile_ids = [];
+				// Check to see if the whole board is cleared
+				if(tiles_flipped == memory_array.length){
+					setTimeout(finalizado, 5000);
+					/*alert("Board cleared... generating new board");
+					document.getElementById('memory_board').innerHTML = "";
+					newBoard();*/
+				}
+			}else if(((memory_values[0]==u) && (memory_values[1]==v)) || ((memory_values[1]==u) && (memory_values[0]==v))){
+				tiles_flipped += 2;
+				memory_values = [];
+            	memory_tile_ids = [];
+				// Check to see if the whole board is cleared
+				if(tiles_flipped == memory_array.length){
+					setTimeout(finalizado, 5000);
+					/*alert("Board cleared... generating new board");
+					document.getElementById('memory_board').innerHTML = "";
+					newBoard();*/
+				}
+			}else if(((memory_values[0]==w) && (memory_values[1]==x)) || ((memory_values[1]==w) && (memory_values[0]==x))){
+				tiles_flipped += 2;
+				memory_values = [];
+            	memory_tile_ids = [];
+				// Check to see if the whole board is cleared
+				if(tiles_flipped == memory_array.length){
+					setTimeout(finalizado, 5000);
+					/*alert("Board cleared... generating new board");
+					document.getElementById('memory_board').innerHTML = "";
+					newBoard();*/
+				}
+			}else if(((memory_values[0]==aa) && (memory_values[1]==ab)) || ((memory_values[1]==aa) && (memory_values[0]==ab))){
+				tiles_flipped += 2;
+				memory_values = [];
+            	memory_tile_ids = [];
+				// Check to see if the whole board is cleared
+				if(tiles_flipped == memory_array.length){
+					setTimeout(finalizado, 5000);
+					/*alert("Board cleared... generating new board");
+					document.getElementById('memory_board').innerHTML = "";
+					newBoard();*/
+				}
+			}else if(((memory_values[0]==y) && (memory_values[1]==z)) || ((memory_values[1]==z) && (memory_values[0]==y))){
+				tiles_flipped += 2;
+				memory_values = [];
+            	memory_tile_ids = [];
+				// Check to see if the whole board is cleared
+				if(tiles_flipped == memory_array.length){
+					setTimeout(finalizado, 5000);
+					/*alert("Board cleared... generating new board");
+					document.getElementById('memory_board').innerHTML = "";
+					newBoard();*/
+				}
+			}
+			else {
+				function flip2Back(){
+				    // Flip the 2 tiles back over
+				    var tile_1 = document.getElementById(memory_tile_ids[0]);
+				    var tile_2 = document.getElementById(memory_tile_ids[1]);
+				    tile_1.style.background = 'url(Tarjetas.png) no-repeat';
+            	    tile_1.innerHTML = "";
+				    tile_2.style.background = 'url(Tarjetas.png) no-repeat';
+            	    tile_2.innerHTML = "";
+				    // Clear both arrays
+				    memory_values = [];
+            	    memory_tile_ids = [];
+				}
+				setTimeout(flip2Back, 2000);
+			}
+		}
+	}
+}
+
+</script>
+</head>
+<body bgcolor=#CCC>
+<div id="memory_board"></div>
+<script>newBoard();</script>
+<div class="footer">
+	<p align="center">Original Script by <a href="https://www.developphp.com/video/JavaScript/Memory-Game-Programming-Tutorial" target="_blanl">Adam Khoury</a></p>
+</div>
+</body>
+</html>
